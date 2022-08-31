@@ -1,0 +1,22 @@
+/* adjust margins for three.js */
+
+body {
+  margin: 0;
+  background-color: black;
+}
+
+/* adjust position for tweakpane pane */
+
+#left_container {
+  position: fixed;
+  left: 20%;
+  top: 75%;
+  margin: 0 auto;
+}
+
+#right_container {
+  position: fixed;
+  right: 20%;
+  top: 75%;
+  margin: 0 auto;
+}
