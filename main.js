@@ -5,6 +5,54 @@ import * as THREE from 'three';
 import {Pane} from 'tweakpane';
 import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls';
 
+/** MOVABLE LEFT DIV **/
+
+const leftWrapper = document.querySelector("#left_container");
+const rightWrapper = document.querySelector("#right_container");
+
+function onLeftDrag(event) {
+    let getStyle = window.getComputedStyle(leftWrapper);
+    let leftPosition = parseInt(getStyle.left);
+    let topPosition = parseInt(getStyle.top);
+
+    leftWrapper.style.left = `${leftPosition + event.movementX}px`;
+    leftWrapper.style.top = `${topPosition + event.movementY}px`;
+}
+
+function onRightDrag(event) {
+    let getStyle = window.getComputedStyle(rightWrapper);
+    let leftPosition = parseInt(getStyle.left);
+    let topPosition = parseInt(getStyle.top);
+
+    rightWrapper.style.left = `${leftPosition + event.movementX}px`;
+    rightWrapper.style.top = `${topPosition + event.movementY}px`;
+}
+
+let isMouseDownOnLeft = false;
+let isMouseDownOnRight = false;
+
+leftWrapper.addEventListener("mousedown", ()=> {
+    isMouseDownOnLeft = true;
+});
+
+rightWrapper.addEventListener("mousedown", ()=> {
+    isMouseDownOnRight = true;
+});
+
+window.addEventListener("mouseup", ()=> {
+    isMouseDownOnLeft = false;
+    isMouseDownOnRight = false;
+});
+
+window.addEventListener("mousemove", function (event) {
+    if (isMouseDownOnLeft) {
+        onLeftDrag(event);
+    }
+    if (isMouseDownOnRight) {
+        onRightDrag(event);
+    }
+});
+
 /** TWEAKPANE
  * NOTES: I'm sure there's a way to drag the panel using jQuery or JS, but I haven't figured it out yet
  * For now, I'm just positioning it depending on the location of a HTML container
